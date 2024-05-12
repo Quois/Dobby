@@ -104,7 +104,10 @@ void Logger::logv(LogLevel level, const char *_fmt, va_list ap) {
 
   if (1 || !enable_syslog_ && log_file_ == nullptr) {
 #if defined(__ANDROID__)
-    __android_log_vprint(ANDROID_LOG_INFO, NULL, fmt_buffer, ap);
+    // __android_log_vprint(ANDROID_LOG_INFO, NULL, fmt_buffer, ap);
+    char out[4096] = {0};
+    vsnprintf(out, sizeof(out) - 1, fmt_buffer, ap);
+    __android_log_print(ANDROID_LOG_INFO, NULL, "%s", out);
 #else
     vprintf(fmt_buffer, ap);
 #endif
