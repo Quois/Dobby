@@ -132,7 +132,7 @@ class AndroidPlatformBuilder(PlatformBuilder):
     self.shared_output_name = "libdobby.so"
     self.static_output_name = "libdobby.a"
 
-    android_api_level = 21
+    android_api_level = 24
     if arch == "armeabi-v7a" or arch == "x86":
       android_api_level = 19
 
